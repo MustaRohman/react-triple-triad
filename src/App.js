@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Card from './components/Card';
-import Hand from './components/Hand';
-import { Board } from './components/Board';
+import { Game } from './components/Game';
 
 class App extends Component {
   constructor() {
@@ -34,7 +32,8 @@ class App extends Component {
   }
   render() {
     return (
-      <Board></Board>
+      <Game></Game>
+      // <Board></Board>
     );
   }
 }
