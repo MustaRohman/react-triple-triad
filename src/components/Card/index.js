@@ -3,8 +3,9 @@ import React from "react";
 import "./index.css";
 
 function Card(props) {
+    let className = 'card ' + (props.selected ? 'selected' : '');
     return (
-        <div className="card">
+        <div className={className}>
             <p className="header">{props.name}</p>
             <div className="description">
                 <div className="stat-item-top">{props.stats[0]}</div>
