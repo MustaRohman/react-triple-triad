@@ -11,8 +11,9 @@
     display: inline-grid;
     grid-template-columns: 100%;
     grid-template-rows: 20% auto 20%;
-     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-     background-color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: white;
+    text-align: center;
   }
 
   .header {

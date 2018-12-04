@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Card from './components/Card';
 import Hand from './components/Hand';
+import { Board } from './components/Board';
 
 class App extends Component {
   constructor() {
@@ -33,10 +34,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-      <Hand cards={this.state.cards}></Hand>
-        {/* <Card name="Card Name" stats={[1, 2, 3, 4]}/> */}
-      </div>
+      <Board></Board>
     );
   }
 }
