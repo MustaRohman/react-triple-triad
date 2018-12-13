@@ -15,7 +15,7 @@ export class Game extends React.Component {
             },
             player2: {
                 score: 5,
-                hand: []
+                hand: cards
             },
             board: [
                 [null, null, null],
