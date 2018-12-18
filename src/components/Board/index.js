@@ -9,16 +9,46 @@ export class Board extends React.Component {
         this.state = {
             selectedIndex: 3,            
         }
+        document.onkeydown = (key) => {
+            let currentIndex = this.state.selectedIndex;
+            console.log(this.props.turn);
+
+            switch(key.keyCode) {
+                case 38: {
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = 4;
+                    }
+                    this.setState({
+                        selectedIndex: currentIndex,
+                    });
+                    break;
+                }
+                case 40: {
+                    currentIndex++;
+                    if (currentIndex > 4) {
+                        currentIndex = 0;
+                    }
+                    this.setState({
+                        selectedIndex: currentIndex,
+                    });
+                    break;
+                }
+                default: {
+                    console.log(key.keyCode);
+                }
+            }                
+        }
     }
 
     render() {
         return (
             <div className="board">         
                 <div className="board-hand">
-                    <Hand cards={this.props.player2Hand} side="right"></Hand></div>
+                    <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand></div>
                 <div className="center"></div>
                 <div className="board-hand">
-                    <Hand  cards={this.props.player2Hand} side="right"></Hand>
+                    <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                 </div>                
             </div>
         )
