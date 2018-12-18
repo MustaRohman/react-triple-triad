@@ -1,6 +1,6 @@
 .selected {
     z-index: 2;
-    border: 8px solid black;
+    border: 2px solid blue !important;
 }
 
 .card {

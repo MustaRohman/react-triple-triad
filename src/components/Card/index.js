@@ -3,7 +3,7 @@ import React from "react";
 import "./index.css";
 
 function Card(props) {
-    let className = 'card ' + (props.selected ? 'selected' : '');
+    let className = (props.selected ? 'selected' : '') + ' card'
     return (
         <div className={className}>
             <p className="header">{props.name}</p>
