@@ -2,6 +2,7 @@ import React from "react";
 import Hand from "../Hand";
 
 import "./index.css";
+import { Grid } from "../Grid";
 
 export class Board extends React.Component {
     constructor(props) {
@@ -46,7 +47,7 @@ export class Board extends React.Component {
             <div className="board">         
                 <div className="board-hand">
                     <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand></div>
-                <div className="center"></div>
+                <Grid />
                 <div className="board-hand">
                     <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                 </div>                

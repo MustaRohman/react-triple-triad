@@ -1,0 +1,14 @@
+.grid {
+    width: 30em;
+    height: 100%;
+    margin: auto;
+    border: 2px solid black;
+    /* display: inline-grid;
+    grid-template-columns: 3;
+    grid-template-rows: 3; */
+}
+
+.row {
+    display: flex;
+    flex-direction: row
+}
