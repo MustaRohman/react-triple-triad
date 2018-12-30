@@ -1,5 +1,5 @@
 .grid {
-    width: 30em;
+    width: 32em;
     height: 100%;
     margin: auto;
     border: 2px solid black;
@@ -9,6 +9,18 @@
 }
 
 .row {
+    padding-left: auto;
+    padding-right: auto;
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.blank {
+    border: 1px solid black;
+  margin: 5px;
+  width: 130px;
+  height: 190px;
+  display: inline-block;
 }

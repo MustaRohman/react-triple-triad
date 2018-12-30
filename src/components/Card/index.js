@@ -2,7 +2,7 @@ import React from "react";
 
 import "./index.css";
 
-function Card(props) {
+function Card(props) {    
     let className = (props.selected ? 'selected' : '') + ' card'
     return (
         <div className={className}>

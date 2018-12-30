@@ -45,7 +45,7 @@ export class Grid extends React.Component {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index}/>)
             } else {
-                return (<Card name="blank" stats={[null, null, null, null]} key={index} />)
+                return (<div className="blank" key={index}></div>)
             }
         })
 
@@ -53,7 +53,7 @@ export class Grid extends React.Component {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {
-                return (<Card name="blank" stats={[null, null, null, null]} key={index} />)
+                return (<div className="blank" key={index}></div>)
             }
         })
 
@@ -61,15 +61,21 @@ export class Grid extends React.Component {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {
-                return (<Card name="blank" stats={[null, null, null, null]} key={index} />)
+                return (<div className="blank" key={index}></div>)
             }
         })
 
         return (
             <div className="grid">
-            {row0}
-            {row1}
-            {row2}
+                <div className="row">
+                    {row0}
+                </div>
+                <div className="row">
+                    {row1}
+                </div>
+                <div className="row">
+                    {row2}
+                </div>
             </div>
         )
     }
