@@ -9,11 +9,14 @@ function Card(props) {
             <p className="header">{props.name}</p>
             <div className="description">
                 <div className="stat-item-top">{props.stats[0]}</div>
-                <div className="stat-item">{props.stats[1]}</div>
-                <div className="stat-item">{props.stats[2]}</div>
+                <div className="stat-item-middle">
+                    <p>{props.stats[1]}</p>
+                    <p>{props.stats[2]}</p>
+                </div>
+                {/* <div className="stat-item-middle">{props.stats[2]}</div> */}
                 <div className="stat-item-top ">{props.stats[3]}</div>
             </div>
-            <div className="footer">Fire</div>
+            { props.element ? <div className="footer">props.element</div> : null}
         </div>
     )
 }
