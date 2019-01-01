@@ -19,23 +19,11 @@ export class Game extends React.Component {
                 hand: player2Cards
             },
             grid: [
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
                     null,
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
+                    null,
+                    null,
+                    null,
+                    null,
                     null,
                     null, null, null
             ],
@@ -56,6 +44,7 @@ export class Game extends React.Component {
             player2Hand={this.state.player2.hand} 
             turn={this.state.turn}
             grid={this.state.grid}
+            onTileSelect={this.placeCardOnGrid}
             ></Board>
         )
     }

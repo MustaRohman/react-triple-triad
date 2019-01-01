@@ -8,7 +8,9 @@ export class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedIndex: 3,            
+            selectedIndex: 3,
+            tileIndex: 8,
+            tileMode: false
         }        
         this.initKeyDownHandler();
     }
@@ -25,7 +27,7 @@ export class Board extends React.Component {
                         currentIndex = 4;
                     }
                     this.setState({
-                        selectedIndex: currentIndex,
+                        selectedIndex: currentIndex
                     });
                     break;
                 }
@@ -37,6 +39,19 @@ export class Board extends React.Component {
                     this.setState({
                         selectedIndex: currentIndex,
                     });
+                    break;
+                }
+                case 13: {
+                    if (!this.state.tileMode) {
+                        let index = this.props.grid.indexOf(null);
+                        this.setState({
+                            selectedIndex: null,
+                            tileIndex: index,
+                            tileMode: true
+                        });
+                    } else {
+
+                    }
                     break;
                 }
                 default: {
@@ -51,7 +66,7 @@ export class Board extends React.Component {
             <div className="board">         
                 <div className="board-hand">
                     <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand></div>
-                <Grid tiles={this.props.grid}/>
+                <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
                 <div className="board-hand">
                     <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                 </div>                

@@ -24,3 +24,11 @@
   height: 190px;
   display: inline-block;
 }
+
+.blank-selected {
+    border: 2px solid blue;
+  margin: 5px;
+  width: 130px;
+  height: 190px;
+  display: inline-block;
+}
