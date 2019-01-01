@@ -11,6 +11,7 @@
 .row {
     padding-left: auto;
     padding-right: auto;
+    height: 200px;
     display: flex;
     flex-direction: row;
     text-align: center;
