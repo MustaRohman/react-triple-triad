@@ -23,7 +23,10 @@ export class Board extends React.Component {
                 case 37: {
                     if (this.state.tileMode) {
                         let index = this.state.tileIndex;
-                        index = (index - 1) % 9;
+                        do {
+                            index = (index - 1) % 9;
+                        }
+                        while (this.props.grid[index]);
                         if (index < 0) index = index + 9;
                         this.setState({
                             tileIndex: index
@@ -42,8 +45,11 @@ export class Board extends React.Component {
                         });
                     } else {
                         let index = this.state.tileIndex;
-                        index = (index - 3) % 9;
-                        if (index < 0) index = index + 9;
+                        do {
+                            index = (index - 3) % 9;
+                            if (index < 0) index = index + 9;
+                        }
+                        while (this.props.grid[index]);
                         this.setState({
                             tileIndex: index
                         });
@@ -53,7 +59,10 @@ export class Board extends React.Component {
                 case 39: {
                     if (this.state.tileMode) {
                         let index = this.state.tileIndex;
-                        index = (index + 1) % 9;
+                        do {
+                            index = (index + 1) % 9;
+                        }
+                        while (this.props.grid[index]) ;
                         this.setState({
                             tileIndex: index
                         });
@@ -71,7 +80,10 @@ export class Board extends React.Component {
                         });
                     } else {
                         let index = this.state.tileIndex;
-                        index = (index + 3) % 9;
+                        do {
+                            index = (index + 3) % 9;
+                        }
+                        while (this.props.grid[index]);
                         this.setState({
                             tileIndex: index
                         });
