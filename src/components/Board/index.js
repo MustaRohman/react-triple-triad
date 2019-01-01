@@ -22,23 +22,40 @@ export class Board extends React.Component {
 
             switch(key.keyCode) {
                 case 38: {
-                    currentIndex--;
-                    if (currentIndex < 0) {
-                        currentIndex = 4;
+                    if (!this.state.tileMode) {
+                        currentIndex--;
+                        if (currentIndex < 0) {
+                            currentIndex = 4;
+                        }
+                        this.setState({
+                            selectedIndex: currentIndex
+                        });
+                    } else {
+                        let index = this.state.tileIndex;
+                        index = (index - 3) % 9;
+                        if (index < 0) index = index + 9;
+                        this.setState({
+                            tileIndex: index
+                        });
                     }
-                    this.setState({
-                        selectedIndex: currentIndex
-                    });
                     break;
                 }
                 case 40: {
-                    currentIndex++;
-                    if (currentIndex > 4) {
-                        currentIndex = 0;
+                    if (!this.state.tileMode) {
+                        currentIndex++;
+                        if (currentIndex > 4) {
+                            currentIndex = 0;
+                        }
+                        this.setState({
+                            selectedIndex: currentIndex,
+                        });
+                    } else {
+                        let index = this.state.tileIndex;
+                        index = (index + 3) % 9;
+                        this.setState({
+                            tileIndex: index
+                        });
                     }
-                    this.setState({
-                        selectedIndex: currentIndex,
-                    });
                     break;
                 }
                 case 13: {
