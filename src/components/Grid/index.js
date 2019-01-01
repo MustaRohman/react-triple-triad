@@ -10,38 +10,15 @@ export class Grid extends React.Component {
         select: PropTypes.bool
     }
 
-    state = {
-        tiles: [
-            [
-                {
-                    name: 'Name',
-                    stats: [0, 0, 0, 0]
-                },
-                {
-                    name: 'Name',
-                    stats: [0, 0, 0, 0]
-                },
-                null
-            ],
-            [
-                {
-                    name: 'Name',
-                    stats: [0, 0, 0, 0]
-                },
-                {
-                    name: 'Name',
-                    stats: [0, 0, 0, 0]
-                },
-                null
-            ],
-            [
-                null, null, null
-            ]
-        ]
-    }
+    
     
     render() {
-        const row0 = this.props.tiles[0].map((item, index) => {
+        let split0, split1, split2, row0, row1, row2;
+        split0 = this.props.tiles.slice(0, 3);
+        split1 = this.props.tiles.slice(3, 6);
+        split2 = this.props.tiles.slice(6, 9);
+
+        row0 = split0.map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index}/>)
             } else {
@@ -49,7 +26,7 @@ export class Grid extends React.Component {
             }
         })
 
-        const row1 = this.props.tiles[1].map((item, index) => {
+        row1 = split1.map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {
@@ -57,7 +34,7 @@ export class Grid extends React.Component {
             }
         })
 
-        const row2 = this.props.tiles[2].map((item, index) => {
+        row2 = split2.map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {

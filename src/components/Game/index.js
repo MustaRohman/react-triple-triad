@@ -10,7 +10,6 @@ export class Game extends React.Component {
 
         this.state = {
             selectedIndex: 3,
-            turn: true,
             player1: {
                 score: 5,
                 hand: player1Cards
@@ -20,7 +19,6 @@ export class Game extends React.Component {
                 hand: player2Cards
             },
             grid: [
-                [
                     {
                         name: 'Name',
                         stats: [0, 0, 0, 0]
@@ -29,9 +27,7 @@ export class Game extends React.Component {
                         name: 'Name',
                         stats: [0, 0, 0, 0]
                     },
-                    null
-                ],
-                [
+                    null,
                     {
                         name: 'Name',
                         stats: [0, 0, 0, 0]
@@ -40,15 +36,19 @@ export class Game extends React.Component {
                         name: 'Name',
                         stats: [0, 0, 0, 0]
                     },
-                    null
-                ],
-                [
+                    null,
                     null, null, null
-                ]
-            ]
+            ],
+            turn: true,
         }        
     }
 
+    placeCardOnGrid(coord, turn) {
+        if (turn) {
+            
+        }
+    }
+    
     render() {
         return (
             <Board 
