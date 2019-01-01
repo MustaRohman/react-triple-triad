@@ -9,7 +9,11 @@ export class Board extends React.Component {
         super(props);
         this.state = {
             selectedIndex: 3,            
-        }
+        }        
+        this.initKeyDownHandler();
+    }
+
+    initKeyDownHandler() {
         document.onkeydown = (key) => {
             let currentIndex = this.state.selectedIndex;
             console.log(this.props.turn);
@@ -47,7 +51,7 @@ export class Board extends React.Component {
             <div className="board">         
                 <div className="board-hand">
                     <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand></div>
-                <Grid />
+                <Grid tiles={this.props.grid}/>
                 <div className="board-hand">
                     <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                 </div>                

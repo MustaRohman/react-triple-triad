@@ -19,10 +19,32 @@ export class Game extends React.Component {
                 score: 5,
                 hand: player2Cards
             },
-            board: [
-                [null, null, null],
-                [null, null, null],
-                [null, null, null]
+            grid: [
+                [
+                    {
+                        name: 'Name',
+                        stats: [0, 0, 0, 0]
+                    },
+                    {
+                        name: 'Name',
+                        stats: [0, 0, 0, 0]
+                    },
+                    null
+                ],
+                [
+                    {
+                        name: 'Name',
+                        stats: [0, 0, 0, 0]
+                    },
+                    {
+                        name: 'Name',
+                        stats: [0, 0, 0, 0]
+                    },
+                    null
+                ],
+                [
+                    null, null, null
+                ]
             ]
         }        
     }
@@ -33,6 +55,7 @@ export class Game extends React.Component {
             player1Hand={this.state.player1.hand} 
             player2Hand={this.state.player2.hand} 
             turn={this.state.turn}
+            grid={this.state.grid}
             ></Board>
         )
     }

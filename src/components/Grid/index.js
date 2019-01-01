@@ -41,7 +41,7 @@ export class Grid extends React.Component {
     }
     
     render() {
-        const row0 = this.state.tiles[0].map((item, index) => {
+        const row0 = this.props.tiles[0].map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index}/>)
             } else {
@@ -49,7 +49,7 @@ export class Grid extends React.Component {
             }
         })
 
-        const row1 = this.state.tiles[1].map((item, index) => {
+        const row1 = this.props.tiles[1].map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {
@@ -57,7 +57,7 @@ export class Grid extends React.Component {
             }
         })
 
-        const row2 = this.state.tiles[2].map((item, index) => {
+        const row2 = this.props.tiles[2].map((item, index) => {
             if (item) {
                 return (<Card name={item.name} stats={item.stats} key={index} />)
             } else {
