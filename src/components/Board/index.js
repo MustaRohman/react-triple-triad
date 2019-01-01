@@ -18,9 +18,19 @@ export class Board extends React.Component {
     initKeyDownHandler() {
         document.onkeydown = (key) => {
             let currentIndex = this.state.selectedIndex;
-            console.log(this.props.turn);
 
             switch(key.keyCode) {
+                case 37: {
+                    if (this.state.tileMode) {
+                        let index = this.state.tileIndex;
+                        index = (index - 1) % 9;
+                        if (index < 0) index = index + 9;
+                        this.setState({
+                            tileIndex: index
+                        });
+                    }
+                    break;
+                }
                 case 38: {
                     if (!this.state.tileMode) {
                         currentIndex--;
@@ -34,6 +44,16 @@ export class Board extends React.Component {
                         let index = this.state.tileIndex;
                         index = (index - 3) % 9;
                         if (index < 0) index = index + 9;
+                        this.setState({
+                            tileIndex: index
+                        });
+                    }
+                    break;
+                }
+                case 39: {
+                    if (this.state.tileMode) {
+                        let index = this.state.tileIndex;
+                        index = (index + 1) % 9;
                         this.setState({
                             tileIndex: index
                         });
