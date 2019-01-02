@@ -10,7 +10,8 @@ export class Board extends React.Component {
         this.state = {
             selectedIndex: 3,
             tileIndex: 8,
-            tileMode: false
+            tileMode: false,
+            selectedCard: null
         }        
         this.initKeyDownHandler();
     }
@@ -40,6 +41,7 @@ export class Board extends React.Component {
                         if (currentIndex < 0) {
                             currentIndex = 4;
                         }
+                        
                         this.setState({
                             selectedIndex: currentIndex
                         });
@@ -94,12 +96,17 @@ export class Board extends React.Component {
                     if (!this.state.tileMode) {
                         let index = this.props.grid.indexOf(null);
                         this.setState({
-                            selectedIndex: null,
                             tileIndex: index,
                             tileMode: true
                         });
                     } else {
-
+                        const selectedIndex = this.state.selectedIndex;
+                        const tileIndex = this.state.tileIndex;                    
+                        this.props.onTileSelect(selectedIndex, tileIndex )
+                        this.setState({
+                            tileMode: false,
+                            selectedIndex: 0
+                        })
                     }
                     break;
                 }

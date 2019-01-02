@@ -9,7 +9,6 @@ export class Game extends React.Component {
         const player2Cards = cards.deck2.slice();
 
         this.state = {
-            selectedIndex: 3,
             player1: {
                 score: 5,
                 hand: player1Cards
@@ -37,9 +36,31 @@ export class Game extends React.Component {
         }        
     }
 
-    placeCardOnGrid(coord, turn) {
-        if (turn) {
-            
+    placeCardOnGrid(handIndex, tileIndex) {
+        if (this.state.turn) {
+            let player1Hand = this.state.player1.hand.slice();
+            const card = player1Hand.splice(handIndex, 1)[0];
+            let grid = this.state.grid.slice();
+            grid[tileIndex] = card;
+            this.setState({
+                player1: {
+                    hand: player1Hand
+                },
+                grid: grid,
+                turn: !this.state.turn
+            })
+        } else {
+            let player2Hand = this.state.player2.hand.slice();
+            const card = player2Hand.splice(handIndex, 1)[0];
+            let grid = this.state.grid.slice();
+            grid[tileIndex] = card;
+            this.setState({
+                player2: {
+                    hand: player2Hand
+                },
+                grid: grid,
+                turn: !this.state.turn
+            })
         }
     }
     
@@ -50,7 +71,7 @@ export class Game extends React.Component {
             player2Hand={this.state.player2.hand} 
             turn={this.state.turn}
             grid={this.state.grid}
-            onTileSelect={this.placeCardOnGrid}
+            onTileSelect={(handIndex, tileIndex) => {this.placeCardOnGrid(handIndex, tileIndex)}}
             ></Board>
         )
     }
