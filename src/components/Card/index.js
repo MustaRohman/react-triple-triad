@@ -2,8 +2,13 @@ import React from "react";
 
 import "./index.css";
 
-function Card(props) {    
-    let className = (props.selected ? 'selected' : '') + ' card'
+function Card(props) {
+    // let className = (props.selected ? 'selected' : '') + ' card'
+    let className = '';
+    if (props.selected) {
+        className = props.owner ? 'player1' : 'player2';
+    }
+    className += ' card';
     return (
         <div className={className}>
             <p className="header">{props.name}</p>

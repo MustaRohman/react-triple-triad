@@ -20,17 +20,17 @@ export class Grid extends React.Component {
             if (index < 3) {
                 
                 row0.push(
-                    item ? <Card name={item.name} stats={item.stats} key={index}/> 
+                    item ? <Card name={item.name} owner={item.player} selected={true} stats={item.stats} key={index}/> 
                     : <div className={index === this.props.selectedIndex && this.props.tileMode ? 'blank-selected' : 'blank'} key={index}></div>
                 );
             } else if (index < 6) {
                 row1.push(
-                    item ? <Card name={item.name} stats={item.stats} key={index}/> 
+                    item ? <Card name={item.name} owner={item.player} selected={true} stats={item.stats} key={index}/> 
                     : <div className={index === this.props.selectedIndex && this.props.tileMode  ? 'blank-selected' : 'blank'} key={index}></div>
                 );
             } else {
                 row2.push(
-                    item ? <Card name={item.name} stats={item.stats} key={index}/> 
+                    item ? <Card name={item.name} owner={item.player} selected={true} stats={item.stats} key={index}/> 
                     : <div className={index === this.props.selectedIndex && this.props.tileMode ? 'blank-selected' : 'blank'} key={index}></div>
                 );
             }

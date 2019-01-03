@@ -3,6 +3,16 @@
     border: 2px solid blue !important;
 }
 
+.player1 {
+  z-index: 2;
+  border: 2px solid blue !important;
+}
+
+.player2 {
+  z-index: 2;
+  border: 2px solid rgb(3, 187, 3) !important;
+}
+
 .card {
   width: 130px;
   height: 190px;
