@@ -1,7 +1,7 @@
 .hand {
     display: inline-grid;
-    grid-template-rows: 6em 6em 6em 6em 6em;
-    height: 100%;
+    grid-template-rows: 8.5em 8.5em 8.5em 8.5em 8.5em;
+    height: 47em;
     text-align: center;
     width: 9em;
     border: 2px solid black;

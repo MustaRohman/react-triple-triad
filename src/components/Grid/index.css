@@ -1,6 +1,6 @@
 .grid {
     width: 32em;
-    height: 100%;
+    height: auto;
     margin: auto;
     border: 2px solid black;
     /* display: inline-grid;
