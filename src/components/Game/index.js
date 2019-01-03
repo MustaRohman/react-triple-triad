@@ -20,15 +20,9 @@ export class Game extends React.Component {
             grid: [
                     null,
                     null,
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
                     null,
-                    {
-                        name: 'Name',
-                        stats: [0, 0, 0, 0]
-                    },
+                    null,
+                    null,
                     null,
                     null, null, null
             ],

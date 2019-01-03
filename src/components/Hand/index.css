@@ -1,5 +1,8 @@
 .hand {
     display: inline-grid;
-    grid-template-rows: 4em 4em 4em 4em 4em;
-    height: 6em;
+    grid-template-rows: 6em 6em 6em 6em 6em;
+    height: 100%;
+    text-align: center;
+    width: 9em;
+    border: 2px solid black;
 }
