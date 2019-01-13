@@ -121,12 +121,12 @@ export class Board extends React.Component {
         return (
             <div className="board">         
                 <div className="board-hand">
-                    <p>Number</p>
+                    <p>{this.props.player1Score}</p>
                     <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand>
                 </div>
                 <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
                 <div className="board-hand">
-                    <p>Number</p>
+                    <p>{this.props.player2Score}</p>
                     <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                 </div>                
             </div>

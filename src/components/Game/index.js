@@ -17,6 +17,7 @@ export class Game extends React.Component {
                 score: 5,
                 hand: player2Cards
             },
+            gridCardTotal: 0,
             grid: [
                     null,
                     null,
@@ -31,16 +32,20 @@ export class Game extends React.Component {
     }
 
     placeCardOnGrid(handIndex, tileIndex) {
+        let gridCardTotal = this.state.gridCardTotal;
         if (this.state.turn) {
             let player1Hand = this.state.player1.hand.slice();
             const card = player1Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
+            let gridCardTotal = this.state.gridCardTotal;
             grid[tileIndex] = card;
             this.setState({
                 player1: {
-                    hand: player1Hand
+                    hand: player1Hand,
+                    score: this.state.player1.score
                 },
                 grid: grid,
+                gridCardTotal: gridCardTotal++,
                 turn: !this.state.turn
             })
         } else {
@@ -50,9 +55,11 @@ export class Game extends React.Component {
             grid[tileIndex] = card;
             this.setState({
                 player2: {
-                    hand: player2Hand
+                    hand: player2Hand,
+                    score : this.state.player2.score
                 },
                 grid: grid,
+                gridCardTotal : gridCardTotal++,
                 turn: !this.state.turn
             })
         }
@@ -62,7 +69,9 @@ export class Game extends React.Component {
         return (
             <Board 
             player1Hand={this.state.player1.hand} 
-            player2Hand={this.state.player2.hand} 
+            player2Hand={this.state.player2.hand}
+            player1Score={this.state.player1.score}
+            player2Score={this.state.player2.score}
             turn={this.state.turn}
             grid={this.state.grid}
             onTileSelect={(handIndex, tileIndex) => {this.placeCardOnGrid(handIndex, tileIndex)}}
