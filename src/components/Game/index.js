@@ -39,6 +39,7 @@ export class Game extends React.Component {
             let grid = this.state.grid.slice();
             let gridCardTotal = this.state.gridCardTotal;
             grid[tileIndex] = card;
+            console.log(this.getNeighbourTileIndices(tileIndex));
             this.setState({
                 player1: {
                     hand: player1Hand,
@@ -64,6 +65,31 @@ export class Game extends React.Component {
             })
         }
     }
+
+    getNeighbourTileIndices(i) {
+        let returnArray = []
+        if (i >= 3) {
+            // Up	
+            returnArray.push(i-3)
+        }
+        
+        if (i % 3 > 0) {
+            // Left
+            returnArray.push(i-1)
+        }
+    
+        if (i < 6) {
+            // Down
+            returnArray.push(i+3)
+        }
+
+        if (i % 3 !== 2) {
+            // Right
+            returnArray.push(i+1)
+        }
+        return returnArray;
+    }
+
     
     render() {
         return (
