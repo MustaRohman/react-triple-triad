@@ -9,6 +9,9 @@ export class Game extends React.Component {
         const player2Cards = cards.deck2.slice();
 
         this.state = {
+            settings: {
+                combo: false
+            },
             player1: {
                 score: 5,
                 hand: player1Cards
