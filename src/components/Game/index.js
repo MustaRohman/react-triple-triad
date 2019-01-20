@@ -44,7 +44,7 @@ export class Game extends React.Component {
             let grid = this.state.grid.slice();
             let gridCardTotal = this.state.gridCardTotal;
             grid[tileIndex] = card;
-            console.log(this.getNeighbourTileIndices(tileIndex));
+            grid = this.performCaptureOperation(card, tileIndex, this.state.turn, grid);
             this.setState({
                 player1: {
                     hand: player1Hand,
@@ -59,6 +59,7 @@ export class Game extends React.Component {
             const card = player2Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
             grid[tileIndex] = card;
+            grid = this.performCaptureOperation(card, tileIndex, this.state.turn, grid);
             this.setState({
                 player2: {
                     hand: player2Hand,
@@ -83,7 +84,54 @@ export class Game extends React.Component {
      */
 
     performCaptureOperation(card, tileIndex, player, grid) {
+        const neighbourTileIndices = this.getNeighbourTileIndices(tileIndex);
+        let newGrid = grid.slice();
+        let neighbourCard;
+        console.log(neighbourTileIndices, card);
         
+        if (neighbourTileIndices[0] !== null) {
+            console.log('Tile has top neighbour tile');
+            const index = neighbourTileIndices[0];
+            neighbourCard = newGrid[index];
+            
+            if (neighbourCard && card.stats[0] > neighbourCard.stats[3]) {
+                console.log('Card has greater value than top neighbour');
+                neighbourCard.player = player;
+            }
+        }
+
+        if (neighbourTileIndices[1] !== null) {
+            console.log('Tile has left neighbour tile');
+            const index = neighbourTileIndices[1];
+            neighbourCard = newGrid[index];
+            if (neighbourCard && card.stats[1] > neighbourCard.stats[2]) {
+                console.log('Card has greater value than left neighbour');
+                neighbourCard.player = player;
+            }
+        }
+
+        if (neighbourTileIndices[2] !== null) {
+            console.log('Tile has right neighbour tile');
+            const index = neighbourTileIndices[2];
+            neighbourCard = newGrid[index];
+            if (neighbourCard && card.stats[2] > neighbourCard.stats[1]) {
+                console.log('Card has greater value than right neighbour');
+                neighbourCard.player = player;
+            }
+        }
+
+        if (neighbourTileIndices[3] !== null) {
+            console.log('Tile has down neighbour tile');
+            const index = neighbourTileIndices[3];
+            neighbourCard = newGrid[index];
+            if (neighbourCard && card.stats[3] > neighbourCard.stats[0]) {
+                console.log('Card has greater value than down neighbour');
+                neighbourCard.player = player;
+            }
+        }
+        
+        return newGrid;
+
     }
 
     /**

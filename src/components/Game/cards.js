@@ -21,7 +21,7 @@ let deck1 = [
       },
       {
         name: 'Card5',
-        stats: [1, 2, 3, 4],
+        stats: [5, 5, 5, 5],
         player: true
       }
 ]
