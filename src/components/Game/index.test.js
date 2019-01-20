@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Game } from '.';
-import { equal } from 'assert';
 
 
 // on key press down, selectedIndex should be incremented
@@ -21,14 +20,14 @@ describe('Game: ', () => {
 
     it('getNeighbourTileIndices returns the correct neighbour indices', () => {
        const wrapper = shallow(<Game />);
-       expect(wrapper.instance().getNeighbourTileIndices(0).sort()).toEqual([1, 3].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(1).sort()).toEqual([0, 4, 2].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(2).sort()).toEqual([1, 5].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(3).sort()).toEqual([0, 4, 6].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(4).sort()).toEqual([1, 3, 5, 7].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(5).sort()).toEqual([2, 4, 8].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(6).sort()).toEqual([3, 7].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(7).sort()).toEqual([6, 4, 8].sort());
-       expect(wrapper.instance().getNeighbourTileIndices(8).sort()).toEqual([5, 7].sort());
+       expect(wrapper.instance().getNeighbourTileIndices(0)).toEqual([null, null, 1, 3]);
+       expect(wrapper.instance().getNeighbourTileIndices(1)).toEqual([null, 0, 2, 4]);
+       expect(wrapper.instance().getNeighbourTileIndices(2)).toEqual([null, 1, null, 5]);
+       expect(wrapper.instance().getNeighbourTileIndices(3)).toEqual([0, null, 4, 6]);
+       expect(wrapper.instance().getNeighbourTileIndices(4)).toEqual([1, 3, 5, 7]);
+       expect(wrapper.instance().getNeighbourTileIndices(5)).toEqual([2, 4, null, 8]);
+       expect(wrapper.instance().getNeighbourTileIndices(6)).toEqual([3, null, 7, null]);
+       expect(wrapper.instance().getNeighbourTileIndices(7)).toEqual([4, 6, 8, null]);
+       expect(wrapper.instance().getNeighbourTileIndices(8)).toEqual([5, 7, null, null]);
     });
 })

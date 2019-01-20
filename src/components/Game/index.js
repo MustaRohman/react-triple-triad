@@ -28,7 +28,9 @@ export class Game extends React.Component {
                     null,
                     null,
                     null,
-                    null, null, null
+                    null, 
+                    null, 
+                    null
             ],
             turn: true,
         }        
@@ -69,28 +71,65 @@ export class Game extends React.Component {
         }
     }
 
+    /**
+     * PURE FUNCTION
+     * Places Card on Grid
+     * Get Neighbouring tile indices
+     * Loops through neighbours in Grid object
+     * if neighbour != null then
+     *      if Card.stat[position] > neighbour.stat[oppPosition]
+     *          neighbour.player = true | false
+     * return new grid
+     */
+
+    performCaptureOperation(card, tileIndex, player, grid) {
+        
+    }
+
+    /**
+     * Takes in as input a grid tile index and returns an array of [ up, left, right, down ]
+     * A value in the array is null if that neighbour 
+     * doesn't exist in the grid (e.g. 0th index has no 'up' or 'left' neighbour)
+     * @param {Tile index} i 
+     */
     getNeighbourTileIndices(i) {
         let returnArray = []
         if (i >= 3) {
             // Up	
             returnArray.push(i-3)
+        } else {
+            returnArray.push(null)
         }
         
         if (i % 3 > 0) {
             // Left
             returnArray.push(i-1)
-        }
-    
-        if (i < 6) {
-            // Down
-            returnArray.push(i+3)
+        } else {
+            returnArray.push(null)
         }
 
         if (i % 3 !== 2) {
             // Right
             returnArray.push(i+1)
+        } else {
+            returnArray.push(null)
         }
+    
+        if (i < 6) {
+            // Down
+            returnArray.push(i+3)
+        } else {
+            returnArray.push(null)
+        }
+
         return returnArray;
+    }
+
+    /**
+     * Get Stat
+     */
+    getStatIndex() {
+
     }
 
     
