@@ -38,34 +38,43 @@ export class Game extends React.Component {
 
     placeCardOnGrid(handIndex, tileIndex) {
         let gridCardTotal = this.state.gridCardTotal;
+        let player1Hand = this.state.player1.hand.slice();
+        let player2Hand = this.state.player2.hand.slice();
+        
         if (this.state.turn) {
-            let player1Hand = this.state.player1.hand.slice();
             const card = player1Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
             let gridCardTotal = this.state.gridCardTotal;
             grid[tileIndex] = card;
-            grid = this.performCaptureOperation(card, tileIndex, this.state.turn, grid);
+            const results = this.performCaptureOperation(this.state.player1.score, this.state.player2.score, card, tileIndex, this.state.turn, grid);
             this.setState({
                 player1: {
                     hand: player1Hand,
-                    score: this.state.player1.score
+                    score: results.score
                 },
-                grid: grid,
+                player2: {
+                    hand: player2Hand,
+                    score: results.opponentScore
+                },
+                grid: results.grid,
                 gridCardTotal: gridCardTotal++,
                 turn: !this.state.turn
             })
         } else {
-            let player2Hand = this.state.player2.hand.slice();
             const card = player2Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
             grid[tileIndex] = card;
-            grid = this.performCaptureOperation(card, tileIndex, this.state.turn, grid);
+            const results = this.performCaptureOperation(this.state.player2.score, this.state.player1.score, card, tileIndex, this.state.turn, grid);
             this.setState({
                 player2: {
                     hand: player2Hand,
-                    score : this.state.player2.score
+                    score : results.score
                 },
-                grid: grid,
+                player1: {
+                    hand: player1Hand,
+                    score: results.opponentScore
+                },
+                grid: results.grid,
                 gridCardTotal : gridCardTotal++,
                 turn: !this.state.turn
             })
@@ -83,12 +92,13 @@ export class Game extends React.Component {
      * return new grid
      */
 
-    performCaptureOperation(card, tileIndex, player, grid) {
+    performCaptureOperation(score, opponentScore, card, tileIndex, player, grid) {
         const neighbourTileIndices = this.getNeighbourTileIndices(tileIndex);
+        let newScore = score;
+        let newOpponentScore = opponentScore;
         let newGrid = grid.slice();
         let neighbourCard;
-        console.log(neighbourTileIndices, card);
-        
+        console.log(neighbourTileIndices, card);        
         if (neighbourTileIndices[0] !== null) {
             console.log('Tile has top neighbour tile');
             const index = neighbourTileIndices[0];
@@ -97,6 +107,8 @@ export class Game extends React.Component {
             if (neighbourCard && card.stats[0] > neighbourCard.stats[3]) {
                 console.log('Card has greater value than top neighbour');
                 neighbourCard.player = player;
+                newScore++;
+                newOpponentScore--;                
             }
         }
 
@@ -107,6 +119,8 @@ export class Game extends React.Component {
             if (neighbourCard && card.stats[1] > neighbourCard.stats[2]) {
                 console.log('Card has greater value than left neighbour');
                 neighbourCard.player = player;
+                newScore++;
+                newOpponentScore--;
             }
         }
 
@@ -117,6 +131,8 @@ export class Game extends React.Component {
             if (neighbourCard && card.stats[2] > neighbourCard.stats[1]) {
                 console.log('Card has greater value than right neighbour');
                 neighbourCard.player = player;
+                newScore++;
+                newOpponentScore--;
             }
         }
 
@@ -127,10 +143,12 @@ export class Game extends React.Component {
             if (neighbourCard && card.stats[3] > neighbourCard.stats[0]) {
                 console.log('Card has greater value than down neighbour');
                 neighbourCard.player = player;
+                newScore++;
+                newOpponentScore--;
             }
         }
         
-        return newGrid;
+        return {grid: newGrid, score: newScore, opponentScore: newOpponentScore};
 
     }
 
