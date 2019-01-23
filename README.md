@@ -1,3 +1,12 @@
+## TODO
+- Player turn indicator
+- Once tiles are all covered with cards, display end game message displaying who won the game (or if they drew the game)
+- Randomly choose starting player
+- Add mouse support
+- Test in all major browsers
+- Add 'help' modal
+- Add new cards
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
