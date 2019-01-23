@@ -92,6 +92,12 @@ export class Board extends React.Component {
                     }
                     break;
                 }
+                case 27: {
+                    if (this.state.tileMode) {
+                        this.setState({tileMode: false});
+                    }
+                    break;
+                }
                 case 13: {
                     if (!this.state.tileMode) {
                         let index = this.props.grid.indexOf(null);
