@@ -125,16 +125,23 @@ export class Board extends React.Component {
 
     render() {
         return (
-            <div className="board">         
-                <div className="board-hand">
-                    <p>{this.props.player1Score}</p>
-                    <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand>
+            <div className="board">
+                <div className="first-row">
+                    <div className="board-hand">
+                        <h3>Player 1</h3>
+                        <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand>
+                        <p><strong>{this.props.player1Score}</strong> </p>
+                    </div>
+                    <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
+                    <div className="board-hand">
+                        <h3>Player 2</h3>
+                        <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
+                        <p><strong>{this.props.player2Score}</strong> </p>
+                    </div>
+                </div>  
+                <div className="turn-info">
+                    <h3>{this.props.turn ? "Player 1's" : "Player 2's"} Turn</h3>
                 </div>
-                <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
-                <div className="board-hand">
-                    <p>{this.props.player2Score}</p>
-                    <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
-                </div>                
             </div>
         )
     }
