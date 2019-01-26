@@ -124,6 +124,16 @@ export class Board extends React.Component {
     }
 
     render() {
+        let gameInfo;
+        if (this.props.totalCardsPlaces === 9) {
+            if (this.props.player1Score === this.props.player2Score) {
+                gameInfo = 'Game is a Draw!'
+            } else {
+                gameInfo = this.props.player1Score > this.props.player2Score ? 'Player 1 Wins!' : 'Player 2 Wins'
+            }
+        } else {
+            gameInfo = this.props.turn ? "Player 1's" : "Player 2's";
+        }
         return (
             <div className="board">
                 <div className="first-row">
@@ -140,7 +150,7 @@ export class Board extends React.Component {
                     </div>
                 </div>  
                 <div className="turn-info">
-                    <h3>{this.props.turn ? "Player 1's" : "Player 2's"} Turn</h3>
+                    <h3>{(gameInfo)} Turn</h3>
                 </div>
             </div>
         )

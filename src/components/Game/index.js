@@ -9,6 +9,7 @@ export class Game extends React.Component {
         const player2Cards = cards.deck2.slice();
 
         this.state = {
+            totalCardsPlaces: 0,
             settings: {
                 combo: false
             },
@@ -20,7 +21,6 @@ export class Game extends React.Component {
                 score: 5,
                 hand: player2Cards
             },
-            gridCardTotal: 0,
             grid: [
                     null,
                     null,
@@ -37,48 +37,32 @@ export class Game extends React.Component {
     }
 
     placeCardOnGrid(handIndex, tileIndex) {
-        let gridCardTotal = this.state.gridCardTotal;
+        let totalCardsPlaces = this.state.totalCardsPlaces
         let player1Hand = this.state.player1.hand.slice();
         let player2Hand = this.state.player2.hand.slice();
+        let newState = {
+            turn: !this.state.turn,
+            totalCardsPlaces: totalCardsPlaces + 1,
+        }
         
         if (this.state.turn) {
             const card = player1Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
-            let gridCardTotal = this.state.gridCardTotal;
             grid[tileIndex] = card;
             const results = this.performCaptureOperation(this.state.player1.score, this.state.player2.score, card, tileIndex, this.state.turn, grid);
-            this.setState({
-                player1: {
-                    hand: player1Hand,
-                    score: results.score
-                },
-                player2: {
-                    hand: player2Hand,
-                    score: results.opponentScore
-                },
-                grid: results.grid,
-                gridCardTotal: gridCardTotal++,
-                turn: !this.state.turn
-            })
+            newState.grid = results.grid;
+            newState.player1 = {hand:player1Hand, score: results.score};
+            newState.player2 = {hand: player2Hand, score: results.opponentScore}
         } else {
             const card = player2Hand.splice(handIndex, 1)[0];
             let grid = this.state.grid.slice();
             grid[tileIndex] = card;
             const results = this.performCaptureOperation(this.state.player2.score, this.state.player1.score, card, tileIndex, this.state.turn, grid);
-            this.setState({
-                player2: {
-                    hand: player2Hand,
-                    score : results.score
-                },
-                player1: {
-                    hand: player1Hand,
-                    score: results.opponentScore
-                },
-                grid: results.grid,
-                gridCardTotal : gridCardTotal++,
-                turn: !this.state.turn
-            })
+            newState.grid = results.grid;
+            newState.player2 = {hand: player2Hand, score : results.score};
+            newState.player1 = {hand: player1Hand, score: results.opponentScore};
         }
+        this.setState(newState);
     }
 
     /**
@@ -208,6 +192,7 @@ export class Game extends React.Component {
             player2Score={this.state.player2.score}
             turn={this.state.turn}
             grid={this.state.grid}
+            totalCardsPlaces={this.state.totalCardsPlaces}
             onTileSelect={(handIndex, tileIndex) => {this.placeCardOnGrid(handIndex, tileIndex)}}
             ></Board>
         )

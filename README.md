@@ -1,6 +1,6 @@
 ## TODO
-- Escape key to exit tile mode
-- Player turn indicator
+- <strike>Escape key to exit tile mode</strike>
+- <strike>Player turn indicator</strike>
 - Once tiles are all covered with cards, display end game message displaying who won the game (or if they drew the game)
 - Randomly choose starting player
 - Add mouse support
