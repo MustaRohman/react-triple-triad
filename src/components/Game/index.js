@@ -36,7 +36,7 @@ export class Game extends React.Component {
         }        
     }
 
-    placeCardOnGrid(handIndex, tileIndex) {
+    onTileSelect(handIndex, tileIndex) {
         let totalCardsPlaces = this.state.totalCardsPlaces
         let player1Hand = this.state.player1.hand.slice();
         let player2Hand = this.state.player2.hand.slice();
@@ -44,19 +44,15 @@ export class Game extends React.Component {
             turn: !this.state.turn,
             totalCardsPlaces: totalCardsPlaces + 1,
         }
-        
+        const card = this.state.turn ? player1Hand.splice(handIndex, 1)[0] : player2Hand.splice(handIndex, 1)[0];
+        let grid = this.placeCardOnGrid(card, tileIndex);
+
         if (this.state.turn) {
-            const card = player1Hand.splice(handIndex, 1)[0];
-            let grid = this.state.grid.slice();
-            grid[tileIndex] = card;
             const results = this.performCaptureOperation(this.state.player1.score, this.state.player2.score, card, tileIndex, this.state.turn, grid);
             newState.grid = results.grid;
             newState.player1 = {hand:player1Hand, score: results.score};
             newState.player2 = {hand: player2Hand, score: results.opponentScore}
         } else {
-            const card = player2Hand.splice(handIndex, 1)[0];
-            let grid = this.state.grid.slice();
-            grid[tileIndex] = card;
             const results = this.performCaptureOperation(this.state.player2.score, this.state.player1.score, card, tileIndex, this.state.turn, grid);
             newState.grid = results.grid;
             newState.player2 = {hand: player2Hand, score : results.score};
@@ -66,16 +62,31 @@ export class Game extends React.Component {
     }
 
     /**
-     * PURE FUNCTION
-     * Places Card on Grid
-     * Get Neighbouring tile indices
-     * Loops through neighbours in Grid object
-     * if neighbour != null then
-     *      if Card.stat[position] > neighbour.stat[oppPosition]
-     *          neighbour.player = true | false
-     * return new grid
+     * Places card in tile index within grid
+     * @param {*} card 
+     * @param {number} tileIndex Index within grid (0-8)
+     * @returns {any[]} Returns updated grid
      */
+    placeCardOnGrid(card, tileIndex) {
+        let grid = this.state.grid.slice();
+        grid[tileIndex] = card;
+        console.log(grid);
+        return grid;
+    }
 
+    /**
+     * Performs the card capture process of opponent cards after placing, 
+     * which is performed after placing a card on a tile.
+     * Attempts to capture neighbouring cards from top, left, right and down of the newly placed card. 
+     * To 'capture' is to change of the owner of the neighbouring card to the player performing the card placement.
+     * @param {number} score Player's current score/hand total
+     * @param {number} opponentScore Opponent's current score/hand total
+     * @param {object} card Card object that was placed on a tile
+     * @param {number} tileIndex Index of tile that the card was placed on
+     * @param {boolean} player Player that is currently performing the card placement (Player 1: true, Player 2: false)
+     * @param {card[]} grid Current grid of card placements
+     * @returns {{grid: any[], score: number, opponentScore: number}} Object containing updated grid
+     */
     performCaptureOperation(score, opponentScore, card, tileIndex, player, grid) {
         const neighbourTileIndices = this.getNeighbourTileIndices(tileIndex);
         let newScore = score;
@@ -193,7 +204,7 @@ export class Game extends React.Component {
             turn={this.state.turn}
             grid={this.state.grid}
             totalCardsPlaces={this.state.totalCardsPlaces}
-            onTileSelect={(handIndex, tileIndex) => {this.placeCardOnGrid(handIndex, tileIndex)}}
+            onTileSelect={(handIndex, tileIndex) => {this.onTileSelect(handIndex, tileIndex)}}
             ></Board>
         )
     }
