@@ -93,7 +93,13 @@ export class Game extends React.Component {
         let newOpponentScore = opponentScore;
         let newGrid = grid.slice();
         let neighbourCard;
-        console.log(neighbourTileIndices, card);        
+
+        function capture() {
+            neighbourCard.player = player;
+            newScore++;
+            newOpponentScore--;         
+        }
+
         if (neighbourTileIndices[0] !== null) {
             console.log('Tile has top neighbour tile');
             const index = neighbourTileIndices[0];
@@ -101,9 +107,7 @@ export class Game extends React.Component {
             
             if (neighbourCard && card.stats[0] > neighbourCard.stats[3]) {
                 console.log('Card has greater value than top neighbour');
-                neighbourCard.player = player;
-                newScore++;
-                newOpponentScore--;                
+                capture();
             }
         }
 
@@ -113,9 +117,7 @@ export class Game extends React.Component {
             neighbourCard = newGrid[index];
             if (neighbourCard && card.stats[1] > neighbourCard.stats[2]) {
                 console.log('Card has greater value than left neighbour');
-                neighbourCard.player = player;
-                newScore++;
-                newOpponentScore--;
+                capture();
             }
         }
 
@@ -125,9 +127,7 @@ export class Game extends React.Component {
             neighbourCard = newGrid[index];
             if (neighbourCard && card.stats[2] > neighbourCard.stats[1]) {
                 console.log('Card has greater value than right neighbour');
-                neighbourCard.player = player;
-                newScore++;
-                newOpponentScore--;
+                capture();
             }
         }
 
@@ -137,62 +137,51 @@ export class Game extends React.Component {
             neighbourCard = newGrid[index];
             if (neighbourCard && card.stats[3] > neighbourCard.stats[0]) {
                 console.log('Card has greater value than down neighbour');
-                neighbourCard.player = player;
-                newScore++;
-                newOpponentScore--;
+                capture();
             }
         }
         
         return {grid: newGrid, score: newScore, opponentScore: newOpponentScore};
-
     }
 
     /**
      * Takes in as input a grid tile index and returns an array of [ up, left, right, down ]
      * A value in the array is null if that neighbour 
      * doesn't exist in the grid (e.g. 0th index has no 'up' or 'left' neighbour)
-     * @param {Tile index} i 
+     * @param {number} tileIndex
      */
-    getNeighbourTileIndices(i) {
+    getNeighbourTileIndices(tileIndex) {
         let returnArray = []
-        if (i >= 3) {
+        if (tileIndex >= 3) {
             // Up	
-            returnArray.push(i-3)
+            returnArray.push(tileIndex-3)
         } else {
             returnArray.push(null)
         }
         
-        if (i % 3 > 0) {
+        if (tileIndex % 3 > 0) {
             // Left
-            returnArray.push(i-1)
+            returnArray.push(tileIndex-1)
         } else {
             returnArray.push(null)
         }
 
-        if (i % 3 !== 2) {
+        if (tileIndex % 3 !== 2) {
             // Right
-            returnArray.push(i+1)
+            returnArray.push(tileIndex+1)
         } else {
             returnArray.push(null)
         }
     
-        if (i < 6) {
+        if (tileIndex < 6) {
             // Down
-            returnArray.push(i+3)
+            returnArray.push(tileIndex+3)
         } else {
             returnArray.push(null)
         }
 
         return returnArray;
     }
-
-    /**
-     * Get Stat
-     */
-    getStatIndex() {
-
-    }
-
     
     render() {
         return (
