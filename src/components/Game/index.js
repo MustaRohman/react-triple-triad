@@ -48,12 +48,12 @@ export class Game extends React.Component {
         let grid = this.placeCardOnGrid(card, tileIndex);
 
         if (this.state.turn) {
-            const results = this.performCaptureOperation(this.state.player1.score, this.state.player2.score, card, tileIndex, this.state.turn, grid);
+            const results = this.performCaptureOperation(this.state.player1.score, this.state.player2.score, tileIndex, this.state.turn, grid);
             newState.grid = results.grid;
             newState.player1 = {hand:player1Hand, score: results.score};
             newState.player2 = {hand: player2Hand, score: results.opponentScore}
         } else {
-            const results = this.performCaptureOperation(this.state.player2.score, this.state.player1.score, card, tileIndex, this.state.turn, grid);
+            const results = this.performCaptureOperation(this.state.player2.score, this.state.player1.score, tileIndex, this.state.turn, grid);
             newState.grid = results.grid;
             newState.player2 = {hand: player2Hand, score : results.score};
             newState.player1 = {hand: player1Hand, score: results.opponentScore};
@@ -81,13 +81,14 @@ export class Game extends React.Component {
      * To 'capture' is to change of the owner of the neighbouring card to the player performing the card placement.
      * @param {number} score Player's current score/hand total
      * @param {number} opponentScore Opponent's current score/hand total
-     * @param {object} card Card object that was placed on a tile
      * @param {number} tileIndex Index of tile that the card was placed on
      * @param {boolean} player Player that is currently performing the card placement (Player 1: true, Player 2: false)
      * @param {card[]} grid Current grid of card placements
      * @returns {{grid: any[], score: number, opponentScore: number}} Object containing updated grid
      */
-    performCaptureOperation(score, opponentScore, card, tileIndex, player, grid) {
+    performCaptureOperation(score, opponentScore, tileIndex, player, grid) {
+        const card = grid[tileIndex];
+        if (!card) {return null;}
         const neighbourTileIndices = this.getNeighbourTileIndices(tileIndex);
         let newScore = score;
         let newOpponentScore = opponentScore;
