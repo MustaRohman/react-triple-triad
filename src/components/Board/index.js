@@ -138,20 +138,18 @@ export class Board extends React.Component {
             <div className="board">
                 <div className="first-row">
                     <div className="board-hand">
-                        <h3>Player 1</h3>
+                        <h3 className="player-title">{'Player 1 ' + '[' + this.props.player1Score + ']'}</h3>
                         <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand>
-                        <p><strong>{this.props.player1Score}</strong> </p>
                     </div>
-                    <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
+                    <div>
+                        <h3 className="turn-info">{(gameInfo)} Turn</h3>
+                        <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
+                    </div>
                     <div className="board-hand">
-                        <h3>Player 2</h3>
+                        <h3 className="player-title">{'Player 2 ' + '[' + this.props.player2Score + ']'} </h3>
                         <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
-                        <p><strong>{this.props.player2Score}</strong> </p>
                     </div>
                 </div>  
-                <div className="turn-info">
-                    <h3>{(gameInfo)} Turn</h3>
-                </div>
             </div>
         )
     }
