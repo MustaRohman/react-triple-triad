@@ -1,12 +1,16 @@
+# SET UP
+1. Clone the repository
+2. cd into repo
+3. Run `npm i`
+4. Run `npm start`
+5. Open localhost:3000 in browser
+
 ## TODO
-- <strike>Escape key to exit tile mode</strike>
-- <strike>Player turn indicator</strike>
-- Once tiles are all covered with cards, display end game message displaying who won the game (or if they drew the game)
-- Randomly choose starting player
 - Add mouse support
-- Test in all major browsers
 - Add 'help' modal
 - Add new cards
+- Add basic AI
+- Add multiplayer mode
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

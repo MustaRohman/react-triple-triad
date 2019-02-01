@@ -138,7 +138,7 @@ export class Board extends React.Component {
             <div className="board">
                 <div className="first-row">
                     <div className="board-hand">
-                        <h3 className="player-title">{'Player 1 ' + '[' + this.props.player1Score + ']'}</h3>
+                        <h3 className="player-title">{'Player 1  [' + this.props.player1Score + ']'}</h3>
                         <Hand cards={this.props.player1Hand} selectedIndex={this.state.selectedIndex} turn={this.props.turn} side="left"></Hand>
                     </div>
                     <div>
@@ -146,7 +146,7 @@ export class Board extends React.Component {
                         <Grid tiles={this.props.grid} tileMode={this.state.tileMode} selectedIndex={this.state.tileIndex}/>
                     </div>
                     <div className="board-hand">
-                        <h3 className="player-title">{'Player 2 ' + '[' + this.props.player2Score + ']'} </h3>
+                        <h3 className="player-title">{'Player 2 [' + this.props.player2Score + ']'} </h3>
                         <Hand cards={this.props.player2Hand} selectedIndex={this.state.selectedIndex} turn={!this.props.turn} side="right"></Hand>
                     </div>
                 </div>  
