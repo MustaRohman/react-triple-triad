@@ -125,7 +125,7 @@ export class Board extends React.Component {
 
     render() {
         let gameInfo;
-        if (this.props.totalCardsPlaces === 9) {
+        if (this.props.totalCardsPlaced === 9) {
             if (this.props.player1Score === this.props.player2Score) {
                 gameInfo = 'Game is a Draw!'
             } else {
