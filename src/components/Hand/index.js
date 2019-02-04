@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -13,6 +14,11 @@ function Hand(props) {
             {cards}
         </div>
     )
+}
+
+Hand.propTypes = {
+    cards: PropTypes.arrayOf(PropTypes.object),
+    selectedIndex: PropTypes.number
 }
 
 export default Hand;
