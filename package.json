@@ -2,6 +2,7 @@
   "name": "react-triple-triad",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://mustarohman.github.io/react-triple-triad",
   "dependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
